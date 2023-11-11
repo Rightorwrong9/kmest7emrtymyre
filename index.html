@@ -10,7 +10,7 @@
   <!-- 
     - favicon
   -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="./favicon.jpg" type="image/jpg">
 
   <!-- 
     - custom css link
@@ -225,7 +225,7 @@
           </li>
 
           <li>
-            <a href="#" class="navbar-link" data-nav-link id="openPopup">
+            <a href="#contact" class="navbar-link" data-nav-link id="openPopup">
               <span>Contact</span>
 
               <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
@@ -280,12 +280,6 @@
             resilient people of Palestine. Together, let's weave a tapestry of support and empathy, creating a world
             where love triumphs over adversity. #LoveForPalestine 💙🌍
           </p>
-
-          <button class="btn btn-primary" id="triggerButton">
-            <span>Donation</span>
-
-            <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-          </button>
 
         </div>
         <div class="overlay" id="overlay"></div>
@@ -628,7 +622,7 @@
                 <h3 class="h4 item-title">Safe Shelter</h3>
 
                 <p class="item-text">
-                  For Life
+                  For Family
                 </p>
               </div>
             </li>
@@ -782,12 +776,13 @@
                 </li>
 
               </ul>
+              <a href="https://www.aljazeera.com/" target="_blank">
+                <button class="btn btn-secondary">
+                  <span>Learn More Us</span>
 
-              <button class="btn btn-secondary">
-                <span>Learn More Us</span>
-
-                <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-              </button>
+                  <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                </button>
+              </a>
 
             </div>
 
@@ -943,13 +938,13 @@
                     </p>
                   </div>
 
-                  <a href="https://commerce.coinbase.com/checkout/73400813-57bc-49db-b8b6-e0db93fa426d" target="_blank">
-                    <button class="btn btn-secondary">
-                      <span>Donation</span>
 
-                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-                    </button>
-                  </a>
+                  <button class="btn btn-secondary" id="triggerButton1">
+                    <span>Donation</span>
+
+                    <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                  </button>
+
 
                 </div>
 
@@ -1181,6 +1176,7 @@
 
     // Event listeners for buttons
     document.getElementById('triggerButton').addEventListener('click', showPopup);
+    
     document.getElementById('yesButton').addEventListener('click', function () {
       closePopup(); // Close the main popup
       showThankYou(); // Show the thank you message and set the redirect
@@ -1216,7 +1212,7 @@
   </script>
   <script>
     const loadingText = document.getElementById('loading-text');
-    const text = 'It Does Not Matter If A Hundred Criminals Go Unpunished, One Innocent Person Should Not Go Unpunished. #JUSTICEFORPALESTINEPEOPLE';
+    const text = 'It Does Not Matter If A Hundred Criminals Go Unpunished,But One Innocent Person Should Not Go Unpunished. #JUSTICEFORPALESTINEPEOPLE';
     let i = 0;
 
     function typeText() {
