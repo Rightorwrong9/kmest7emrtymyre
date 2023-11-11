@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto AID - Give Love for Saving Palistine Peoples</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@300;400;500;700&family=Oswald:wght@600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Popup container */
+    .popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      background-color: #000;
+      padding: 20px;
+      box-sizing: 100px, 200px;
+      border: 1px solid #000;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      align-items: center;
+      border-radius: 15px;
+      gap: 10px;
+      transition: var(--transition-2);
+    }
+
+    .popup .p {
+      color: black;
+    }
+
+    /* Overlay effect */
+    .overlay {
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("bk.jpg");
+      z-index: 1;
+    }
+
+    /* Button styling */
+    .button {
+      position: relative;
+      background-color: var(--btn-bg, var(--pistachio));
+      color: var(--white);
+      font-weight: var(--fw-600);
+      padding: 10px 20px;
+      margin: 5px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition-2);
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin: 5px;
+      padding: 10px 20px;
+      size-adjust: 20px;
+    }
+
+    /* Image styling */
+    .popup img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      display: flex;
+    }
+
+    #contactPopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0px 0px 10px #000;
+      z-index: 1000;
+      text-align: center;
+    }
+
+    #popupContent {
+      text-align: center;
+    }
+
+    #closePopup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #contactPopup h2 {
+      margin-bottom: 20px;
+    }
+
+    #cancelButton {
+      background-color: #ccc;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #cancelButton:hover {
+      background-color: #ddd;
+    }
+
+    /* Loading page styles */
+    .loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      display: flex;
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #loading-text {
+      font-size: 24px;
+      text-align: center;
+      overflow: hidden;
+      border-right: 0.15em solid #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loading-container" id="loading-container">
+    <div id="loading-text"></div>
+  </div>
+
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <h1>
+        <a href="#" class="logo">#FREEPALISTINE</a>
+      </h1>
+
+
+
+      <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+
+        <a href="#" class="logo">FREEPALISTINE</a>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#home" class="navbar-link" data-nav-link>
+              <span>Home</span>
+
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#about" class="navbar-link" data-nav-link>
+              <span>About</span>
+
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#service" class="navbar-link" data-nav-link>
+              <span>Service</span>
+
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#donate" class="navbar-link" data-nav-link>
+              <span>Donate</span>
+
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link" data-nav-link id="openPopup">
+              <span>Contact</span>
+
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <div class="header-action">
+
+        <button href="#donate" class="btn btn-primary" id="triggerButton">
+          <span>Donation</span>
+
+          <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home">
+        <div class="container">
+
+          <p class="section-subtitle">
+            <img src="./assets/images/subtitle-img-white.png" width="32" height="7" alt="Wavy line">
+
+            <span><strong>Crypto AID For Palistine</strong></span>
+          </p>
+
+          <h2 class="h1 hero-title">
+            Give Love for Saving <strong>Palistiness</strong>
+          </h2>
+
+          <p class="hero-text">
+            Join hands in a global embrace, spreading love to save Palestine. Let kindness be the currency that rebuilds
+            shattered lives and restores hope. Every act of compassion is a step towards a brighter future for the
+            resilient people of Palestine. Together, let's weave a tapestry of support and empathy, creating a world
+            where love triumphs over adversity. #LoveForPalestine 💙🌍
+          </p>
+
+          <button class="btn btn-primary" id="triggerButton">
+            <span>Donation</span>
+
+            <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+        </div>
+        <div class="overlay" id="overlay"></div>
+
+
+        <div class="popup" id="popup">
+          <img src="assets\images\about-banner-2.jpg" alt="Popup Image">
+          <p>Can We See Better Future?</p>
+          <div class="button-container">
+            <button class="btn btn-primary" id="yesButton" style="margin-right: 20px;border-radius: 4px;">Yes</button>
+            <button class="btn btn-primary" id="noButton" style="margin-left: 20px;border-radius: 4px;">No</button>
+          </div>
+        </div>
+
+        <div class="popup" id="thankYouPopup">
+          <p>Thank you! For Opinion , We All So Waiting For Better Future
+          </p>
+          <p>Wait 5 Seconds To Redirect Donation Page
+          </p>
+        </div>
+        <div class="popup" id="secondPopup">
+          <img src="palistine.jpg" alt="Popup Image">
+          <p>We Pray The God For Help</p>
+        </div>
+
+      </section>
+
+
+      <!-- 
+        - #CONTACT POP UP
+      -->
+
+
+      <!-- The popup form -->
+      <div id="contactPopup">
+        <div id="popupContent">
+          <span id="closePopup">&times;</span>
+          <h2>Contact</h2>
+          <div class="contact">
+            <form name="submit-to-google-sheet">
+              <input class="text-center" style="max-width: 400px;" type="text" name="Name" placeholder="Your Name"
+                required><br>
+              <input class="text-center" style="max-width: 400px;" type="email" name="Email"
+                placeholder="Your Email Address" required><br>
+              <select name="subject" text="subject" style="max-width: 400px">
+                <option>Select Your Country</option>
+                <option>Afghanistan</option>
+                <option>Albania</option>
+                <option>Algeria</option>
+                <option>Andorra</option>
+                <option>Angola</option>
+                <option>Antigua and Barbuda</option>
+                <option>Argentina</option>
+                <option>Armenia</option>
+                <option>Australia</option>
+                <option>Austria</option>
+                <option>Azerbaijan</option>
+                <option>Bahamas</option>
+                <option>Bahrain</option>
+                <option>Bangladesh</option>
+                <option>Barbados</option>
+                <option>Belarus</option>
+                <option>Belgium</option>
+                <option>Belize</option>
+                <option>Benin</option>
+                <option>Bhutan</option>
+                <option>Bolivia</option>
+                <option>Bosnia and Herzegovina</option>
+                <option>Botswana</option>
+                <option>Brazil</option>
+                <option>Brunei</option>
+                <option>Bulgaria</option>
+                <option>Burkina Faso</option>
+                <option>Burundi</option>
+                <option>Côte d'Ivoire</option>
+                <option>Cabo Verde</option>
+                <option>Cambodia</option>
+                <option>Cameroon</option>
+                <option>Canada</option>
+                <option>Central African Republic</option>
+                <option>Chad</option>
+                <option>Chile</option>
+                <option>China</option>
+                <option>Colombia</option>
+                <option>Comoros</option>
+                <option>Congo (Congo-Brazzaville)</option>
+                <option>Costa Rica</option>
+                <option>Croatia</option>
+                <option>Cuba</option>
+                <option>Cyprus</option>
+                <option>Czechia (Czech Republic)</option>
+                <option>Democratic Republic of the Congo</option>
+                <option>Denmark</option>
+                <option>Djibouti</option>
+                <option>Dominica</option>
+                <option>Dominican Republic</option>
+                <option>Ecuador</option>
+                <option>Egypt</option>
+                <option>El Salvador</option>
+                <option>Equatorial Guinea</option>
+                <option>Eritrea</option>
+                <option>Estonia</option>
+                <option>Eswatini (fmr. "Swaziland")</option>
+                <option>Ethiopia</option>
+                <option>Fiji</option>
+                <option>Finland</option>
+                <option>France</option>
+                <option>Gabon</option>
+                <option>Gambia</option>
+                <option>Georgia</option>
+                <option>Germany</option>
+                <option>Ghana</option>
+                <option>Greece</option>
+                <option>Grenada</option>
+                <option>Guatemala</option>
+                <option>Guinea</option>
+                <option>Guinea-Bissau</option>
+                <option>Guyana</option>
+                <option>Haiti</option>
+                <option>Holy See</option>
+                <option>Honduras</option>
+                <option>Hungary</option>
+                <option>Iceland</option>
+                <option>India</option>
+                <option>Indonesia</option>
+                <option>Iran</option>
+                <option>Iraq</option>
+                <option>Ireland</option>
+                <option>Israel</option>
+                <option>Italy</option>
+                <option>Jamaica</option>
+                <option>Japan</option>
+                <option>Jordan</option>
+                <option>Kazakhstan</option>
+                <option>Kenya</option>
+                <option>Kiribati</option>
+                <option>Kuwait</option>
+                <option>Kyrgyzstan</option>
+                <option>Laos</option>
+                <option>Latvia</option>
+                <option>Lebanon</option>
+                <option>Lesotho</option>
+                <option>Liberia</option>
+                <option>Libya</option>
+                <option>Liechtenstein</option>
+                <option>Lithuania</option>
+                <option>Luxembourg</option>
+                <option>Madagascar</option>
+                <option>Malawi</option>
+                <option>Malaysia</option>
+                <option>Maldives</option>
+                <option>Mali</option>
+                <option>Malta</option>
+                <option>Marshall Islands</option>
+                <option>Mauritania</option>
+                <option>Mauritius</option>
+                <option>Mexico</option>
+                <option>Micronesia</option>
+                <option>Moldova</option>
+                <option>Monaco</option>
+                <option>Mongolia</option>
+                <option>Montenegro</option>
+                <option>Morocco</option>
+                <option>Mozambique</option>
+                <option>Myanmar (formerly Burma)</option>
+                <option>Namibia</option>
+                <option>Nauru</option>
+                <option>Nepal</option>
+                <option>Netherlands</option>
+                <option>New Zealand</option>
+                <option>Nicaragua</option>
+                <option>Niger</option>
+                <option>Nigeria</option>
+                <option>North Korea</option>
+                <option>North Macedonia</option>
+                <option>Norway</option>
+                <option>Oman</option>
+                <option>Pakistan</option>
+                <option>Palau</option>
+                <option>Palestine State</option>
+                <option>Panama</option>
+                <option>Papua New Guinea</option>
+                <option>Paraguay</option>
+                <option>Peru</option>
+                <option>Philippines</option>
+                <option>Poland</option>
+                <option>Portugal</option>
+                <option>Qatar</option>
+                <option>Romania</option>
+                <option>Russia</option>
+                <option>Rwanda</option>
+                <option>Saint Kitts and Nevis</option>
+                <option>Saint Lucia</option>
+                <option>Saint Vincent and the Grenadines</option>
+                <option>Samoa</option>
+                <option>San Marino</option>
+                <option>Sao Tome and Principe</option>
+                <option>Saudi Arabia</option>
+                <option>Senegal</option>
+                <option>Serbia</option>
+                <option>Seychelles</option>
+                <option>Sierra Leone</option>
+                <option>Singapore</option>
+                <option>Slovakia</option>
+                <option>Slovenia</option>
+                <option>Solomon Islands</option>
+                <option>Somalia</option>
+                <option>South Africa</option>
+                <option>South Korea</option>
+                <option>South Sudan</option>
+                <option>Spain</option>
+                <option>Sri Lanka</option>
+                <option>Sudan</option>
+                <option>Suriname</option>
+                <option>Sweden</option>
+                <option>Switzerland</option>
+                <option>Syria</option>
+                <option>Tajikistan</option>
+                <option>Tanzania</option>
+                <option>Thailand</option>
+                <option>Timor-Leste</option>
+                <option>Togo</option>
+                <option>Tonga</option>
+                <option>Trinidad and Tobago</option>
+                <option>Tunisia</option>
+                <option>Turkey</option>
+                <option>Turkmenistan</option>
+                <option>Tuvalu</option>
+                <option>Uganda</option>
+                <option>Ukraine</option>
+                <option>United Arab Emirates</option>
+                <option>United Kingdom</option>
+                <option>United States of America</option>
+                <option>Uruguay</option>
+                <option>Uzbekistan</option>
+                <option>Vanuatu</option>
+                <option>Venezuela</option>
+                <option>Vietnam</option>
+                <option>Yemen</option>
+                <option>Zambia</option>
+                <option>Zimbabwe</option>
+              </select><br><br>
+              <input class="text-center" style="size-adjust: auto;" type="address" name="address" placeholder="Message"
+                required><br>
+              <button type="submit" class="" style="appearance: auto;
+              text-rendering: auto;
+              color: buttontext;
+              letter-spacing: normal;
+              word-spacing: normal;
+              line-height: normal;
+              text-transform: none;
+              text-indent: 0px;
+              text-shadow: none;
+              display: inline-block;
+              text-align: center;
+              align-items: flex-start;
+              cursor: default;
+              box-sizing: border-box;
+              background-color: buttonface;
+              margin: 0em;
+              padding-block: 1px;
+              padding-inline: 6px;
+              border-width: 2px;
+              border-style: outset;
+              border-color: buttonborder;
+              border-image: initial;">📨
+                Submit</button><br>
+            </form>
+            <span id="msg" class="text-center"></span><br>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const openPopupButton = document.getElementById('openPopup');
+          const contactPopup = document.getElementById('contactPopup');
+          const closePopupButton = document.getElementById('closePopup');
+          const cancelButton = document.getElementById('cancelButton');
+
+          // Open the popup
+          openPopupButton.addEventListener('click', function () {
+            contactPopup.style.display = 'block';
+          });
+
+          // Close the popup
+          closePopupButton.addEventListener('click', function () {
+            contactPopup.style.display = 'none';
+          });
+
+          // Close the popup when clicking outside of it
+          window.addEventListener('click', function (event) {
+            if (event.target === contactPopup) {
+              contactPopup.style.display = 'none';
+            }
+          });
+
+          // Cancel button functionality
+          cancelButton.addEventListener('click', function () {
+            contactPopup.style.display = 'none';
+          });
+        });
+      </script>
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxGKdzyXf1v2c3uOGhdCWkxHz80f3-itTODxd2kKlYyZLDgrQckqCsUFOFVmkToWm8M/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+              msg.innerHTML = "Your Messsage Sent Successfully"
+              setTimeout(function () {
+                msg.innerHTML = ""
+              }, 5000)
+              form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+
+
+      <!-- 
+        - #FEATURES
+      -->
+
+      <section class="section features">
+        <div class="container">
+
+          <ul class="features-list">
+
+            <li class="features-item">
+              <div class="item-icon">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+              </div>
+
+              <div>
+                <h3 class="h4 item-title">Safe Shelter</h3>
+
+                <p class="item-text">
+                  For Life
+                </p>
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="item-icon">
+                <ion-icon name="water-outline"></ion-icon>
+              </div>
+
+              <div>
+                <h3 class="h4 item-title">Safe Water</h3>
+
+                <p class="item-text">
+                  For Life
+                </p>
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="item-icon">
+                <ion-icon name="leaf-outline"></ion-icon>
+              </div>
+
+              <div>
+                <h3 class="h4 item-title">Ecology Save</h3>
+
+                <p class="item-text">
+                  For Health
+                </p>
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="item-icon">
+                <ion-icon name="snow-outline"></ion-icon>
+              </div>
+
+              <div>
+                <h3 class="h4 item-title">Environment</h3>
+
+                <p class="item-text">
+                  For Future
+                </p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" id="about">
+        <div class="container">
+
+          <div class="about-banner">
+
+            <h2 class="deco-title">About Us</h2>
+
+            <img src="./assets/images/deco-img.png" width="58" height="261" alt="" class="deco-img">
+
+            <div class="banner-row">
+
+              <div class="banner-col">
+                <img src="./assets/images/about-banner-1.jpg" width="315" height="380" loading="lazy" alt="Tiger"
+                  class="about-img w-100">
+
+                <img src="./assets/images/about-banner-2.jpg" width="386" height="250" loading="lazy" alt="Panda"
+                  class="about-img about-img-2 w-100">
+              </div>
+
+              <div class="banner-col">
+                <img src="./assets/images/about-banner-3.jpg" width="250" height="277" loading="lazy" alt="Elephant"
+                  class="about-img about-img-3 w-100">
+
+                <img src="./assets/images/about-banner-4.jpg" width="315" height="380" loading="lazy" alt="Deer"
+                  class="about-img w-100">
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="about-content">
+
+            <p class="section-subtitle">
+              <img src="./assets/images/subtitle-img-green.png" width="32" height="7" alt="Wavy line">
+
+              <span>Why Choose Us</span>
+            </p>
+
+            <h2 class="h2 section-title">
+              Rise Your Hand to Save <strong>Palistines Life</strong>
+            </h2>
+
+            <ul class="tab-nav">
+
+              <li>
+                <button class="tab-btn active">Our Mission</button>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+
+              <p class="section-text">
+                Extend a helping hand to save Palestinian lives! Your support can make a difference in providing
+                essential aid and resources to those affected by conflict. Every gesture counts towards fostering hope,
+                peace, and resilience in the lives of Palestinians. Join the global community in making a positive
+                impact today. Together, we can create a brighter future for all.
+              </p>
+
+              <ul class="tab-list">
+
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+
+                  <p class="tab-text">Charity For Foods</p>
+                </li>
+
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+
+                  <p class="tab-text">Charity For Education</p>
+                </li>
+
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+
+                  <p class="tab-text">Charity For Water</p>
+                </li>
+
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+
+                  <p class="tab-text">Charity For Medical</p>
+                </li>
+
+              </ul>
+
+              <button class="btn btn-secondary">
+                <span>Learn More Us</span>
+
+                <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #CTA
+      -->
+
+      <section class="section cta">
+        <div class="container">
+
+          <div class="cta-content">
+            <h2 class="h2 section-title">324+ Trusted Global Partners</h2>
+
+            <button href="#home" class="btn btn-outline" id="openPopup">
+              <span>Become a Partner</span>
+
+              <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+            </button>
+
+
+          </div>
+
+          <figure class="cta-banner">
+            <img src="./assets/images/cta-banner.jpg" width="520" height="228" loading="lazy" alt="Fox"
+              class="img-cover">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="section service" id="service" style="background-image: url('./assets/images/service-map.png')">
+        <div class="container">
+
+          <p class="section-subtitle">
+            <img src="./assets/images/subtitle-img-green.png" width="32" height="7" alt="Wavy line">
+
+            <span>What We Do</span>
+          </p>
+
+          <h2 class="h2 section-title">
+            We Work Differently to <strong>keep The Palistines Safe</strong>
+          </h2>
+
+          <ul class="service-list">
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon">
+                  <ion-icon name="leaf-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Save Childrens</h3>
+
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon">
+                  <ion-icon name="earth-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Medical Supply</h3>
+
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon">
+                  <ion-icon name="flower-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Food Supply</h3>
+
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <div class="card-icon">
+                  <ion-icon name="boat-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Water Supply</h3>
+
+
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #DONATE
+      -->
+
+      <section class="section donate" id="donate">
+        <div class="container">
+
+          <ul class="donate-list">
+
+            <li>
+              <div class="donate-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/donate-1.jpg" width="520" height="325" loading="lazy" alt="Elephant"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Raise Hand To Save Peoples</h3>
+                  <h3 class="h3 card-title">Food & Water Supply</h3>
+
+                  <div class="card-wrapper">
+
+                    <p class="card-wrapper-text">
+                      <span>Goal</span>
+
+                      <data class="green" value="34562">$50000</data>
+                    </p>
+                  </div>
+
+                  <a href="https://commerce.coinbase.com/checkout/73400813-57bc-49db-b8b6-e0db93fa426d" target="_blank">
+                    <button class="btn btn-secondary">
+                      <span>Donation</span>
+
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+                  </a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="donate-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/donate-2.jpg" width="520" height="325" loading="lazy" alt="Elephant"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+                  <h3 class="h3 card-title">Raise Hand To Save Peoples</h3>
+                  <h3 class="h3 card-title">Medical & Health Equipment</h3>
+
+                  <div class="card-wrapper">
+
+                    <p class="card-wrapper-text">
+                      <span>Goal</span>
+
+                      <data class="green" value="34562">$50000</data>
+                    </p>
+                  </div>
+
+                  <a href="https://commerce.coinbase.com/checkout/2680c441-3094-48df-bca1-8d0fb73f9055" target="_blank">
+                    <button class="btn btn-secondary">
+                      <span>Donation</span>
+
+                      <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+                    </button>
+                  </a>
+
+                </div>
+
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #TESTIMONIALS
+      -->
+
+
+      <!-- 
+        - #PARTNER
+      -->
+
+      <section class="section partner">
+        <div class="container">
+
+          <a href="#" class="partner-logo">
+            <img src="./assets/images/partner-1.png" width="157" height="55" loading="lazy" alt="Children Fund"
+              class="gray">
+
+            <img src="./assets/images/partner-1-active.png" width="157" height="55" loading="lazy" alt="Children Fund"
+              class="color">
+          </a>
+
+          <a href="#" class="partner-logo">
+            <img src="./assets/images/partner-2.png" width="163" height="55" loading="lazy" alt="Non Profit Agency"
+              class="gray">
+
+            <img src="./assets/images/partner-2-active.png" width="163" height="55" loading="lazy"
+              alt="Non Profit Agency" class="color">
+          </a>
+
+          <a href="#" class="partner-logo">
+            <img src="./assets/images/partner-3.png" width="149" height="55" loading="lazy" alt="Rise Hand Help Us"
+              class="gray">
+
+            <img src="./assets/images/partner-3-active.png" width="149" height="55" loading="lazy"
+              alt="Rise Hand Help Us" class="color">
+          </a>
+
+          <a href="#" class="partner-logo">
+            <img src="./assets/images/partner-4.png" width="169" height="58" loading="lazy" alt="Helping" class="gray">
+
+            <img src="./assets/images/partner-4-active.png" width="169" height="58" loading="lazy" alt="Helping"
+              class="color">
+          </a>
+
+          <a href="#" class="partner-logo">
+            <img src="./assets/images/partner-5.png" width="211" height="55" loading="lazy" alt="Poor Fund Organization"
+              class="gray">
+
+            <img src="./assets/images/partner-5-active.png" width="211" height="55" loading="lazy"
+              alt="Poor Fund Organization" class="color">
+          </a>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #EVENT
+      -->
+
+
+      <!-- 
+        - #INSTA POST
+      -->
+
+      <section class="insta-post">
+
+        <ul class="insta-post-list">
+
+          <li class="insta-post-item">
+            <a href="#" class="insta-post-link">
+              <img src="./assets/images/insta-1.jpg" width="320" height="300" loading="lazy" alt="Lion"
+                class="img-cover">
+
+
+            </a>
+          </li>
+
+          <li class="insta-post-item">
+            <a href="#" class="insta-post-link">
+              <img src="./assets/images/insta-2.jpg" width="320" height="300" loading="lazy" alt="Deer"
+                class="img-cover">
+
+
+            </a>
+          </li>
+
+          <li class="insta-post-item">
+            <a href="#" class="insta-post-link">
+              <img src="./assets/images/insta-3.jpg" width="320" height="300" loading="lazy" alt="Wild Bear"
+                class="img-cover">
+
+
+            </a>
+          </li>
+
+          <li class="insta-post-item">
+            <a href="#" class="insta-post-link">
+              <img src="./assets/images/insta-4.jpg" width="320" height="300" loading="lazy" alt="Deer"
+                class="img-cover">
+
+
+            </a>
+          </li>
+
+          <li class="insta-post-item">
+            <a href="#" class="insta-post-link">
+              <img src="./assets/images/insta-5.jpg" width="320" height="300" loading="lazy" alt="Horses"
+                class="img-cover">
+
+
+            </a>
+          </li>
+
+        </ul>
+
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+    <p>&copy; 2023 Home Design. All rights reserved.</p>
+  </footer>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    // Function to show the popup
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    // Function to close the popup
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('thankYouPopup').style.display = 'none';
+      document.getElementById('secondPopup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    // Function to show the thank you popup and redirect
+    function showThankYou() {
+      document.getElementById('thankYouPopup').style.display = 'block';
+      // Set a timeout to close the thank you popup and redirect after 5 seconds
+      setTimeout(function () {
+        closePopup();
+        window.location.href = 'https://commerce.coinbase.com/checkout/2a19aad7-7b42-485c-9a0f-85b7c1e879ba';
+      }, 5000);
+    }
+
+    function showSecondPopup() {
+      document.getElementById('secondPopup').style.display = 'block';
+      // Set a timeout to close the second popup after 5 seconds (5000 milliseconds)
+      setTimeout(closePopup, 5000);
+    }
+
+
+    // Event listeners for buttons
+    document.getElementById('triggerButton').addEventListener('click', showPopup);
+    document.getElementById('yesButton').addEventListener('click', function () {
+      closePopup(); // Close the main popup
+      showThankYou(); // Show the thank you message and set the redirect
+    });
+    document.getElementById('noButton').addEventListener('click', function () {
+      closePopup(); // Close the first popup
+      showSecondPopup(); // Close the first popup
+      // ... handle the No button as you wish
+    });
+
+  </script>
+
+  <script>
+    // Add your JavaScript here
+    function showSection(sectionId) {
+      // Hide all sections
+      var sections = document.querySelectorAll('.content-section');
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].classList.remove('active');
+      }
+
+      // Show the selected section
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    // Simulate loading delay and then remove the loading page
+    setTimeout(function () {
+      var loadingPage = document.querySelector('.loading-container');
+      if (loadingPage) {
+        loadingPage.style.display = 'none';
+      }
+    }, 20000); // Adjust the delay (5 seconds) to your preference
+  </script>
+  <script>
+    const loadingText = document.getElementById('loading-text');
+    const text = 'It Does Not Matter If A Hundred Criminals Go Unpunished, One Innocent Person Should Not Go Unpunished. #JUSTICEFORPALESTINEPEOPLE';
+    let i = 0;
+
+    function typeText() {
+      loadingText.textContent += text[i];
+      i++;
+
+      if (i < text.length) {
+        setTimeout(typeText, 100); // Adjust the typing speed (delay) here
+      } else {
+        setTimeout(() => {
+          var loadingContainer = document.getElementById('loading-container');
+          loadingContainer.style.display = 'none'; // Hide the loading container
+          document.getElementById('header').classList.add('active'); // Show the main menu content
+        }, 5000); // Adjust the delay before revealing the content
+      }
+    }
+
+    setTimeout(typeText, 1000); // Delay before starting the typing animation
+  </script>
+
+</body>
+
+
+</html>
